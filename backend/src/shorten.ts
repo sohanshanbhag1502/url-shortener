@@ -3,11 +3,19 @@ import { redisClient } from "./db/redis";
 
 interface shortenReqBody{
     original: string;
-    shortened: string;
 }
 
 interface getReqBody{
     shortened: string;
+}
+
+function getRandomString(length: number):string {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
 }
 
 const shortenRouter=Router({ mergeParams: true });
@@ -15,11 +23,15 @@ const shortenRouter=Router({ mergeParams: true });
 const shorten = async (req:Request, res:Response) => {
     const body: shortenReqBody =req.body as shortenReqBody;
     if (body){
-        await redisClient.set(body.shortened, body.original);
-        res.status(200).json({"message":"URL Shortened Successfully"});
+        var shortURL=getRandomString(5);
+        while (await redisClient.get(shortURL)){
+            shortURL=getRandomString(5);
+        }
+        await redisClient.set(shortURL, body.original);
+        res.status(200).json({"message":shortURL});
         return;
     }
-    res.status(200).json({"message":"URL Shortened Successfully"});
+    res.status(400).json({"message":"Invalid request"});
 }
 shortenRouter.post("/shorten", shorten)
 
