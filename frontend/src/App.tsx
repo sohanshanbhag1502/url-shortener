@@ -1,10 +1,15 @@
 import UrlShortener from "./components/UrlShortener.tsx";
+import RedirectElement from "./components/RedirectElement.tsx";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <UrlShortener />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<UrlShortener />} />
+        <Route path="/:id" element={<RedirectElement />} />
+      </Routes>
+    </Router>
   );
 }
 

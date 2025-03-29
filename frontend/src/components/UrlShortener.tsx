@@ -2,14 +2,11 @@ import { useState } from "react";
 import { Copy, Link, ExternalLink, Loader } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 
-const apiUrl = process.env.REACT_APP_API_URI!;
+const apiUrl = import.meta.env.VITE_API_URI;
+const selfUrl = import.meta.env.VITE_SELF_URI;
 
 interface ShortenResponse {
     message: string;
-}
-
-if (!apiUrl) {
-    throw new Error("API URL is not defined in environment variables.");
 }
 
 export default function UrlShortener() {
@@ -21,20 +18,19 @@ export default function UrlShortener() {
         if (!url) return;
         setLoading(true);
         try {
-            const response = await fetch(apiUrl+"/shorten", {
+            const response = await fetch(apiUrl+"/api/shorten", {
                 headers: {
                     "Content-Type": "application/json",
                 },
                 method: "POST",
                 body: JSON.stringify({
-                    original: url,
-                    shortened: shortUrl,
+                    original: url
                 }),
             })
 
-            const res: ShortenResponse =await response.json();
+            const res: ShortenResponse = await response.json();
             if (response.ok) {
-                setShortUrl(res.message);
+                setShortUrl(selfUrl+"/"+res.message);
             }
             else {
                 console.error("Error shortening URL", res.message);
