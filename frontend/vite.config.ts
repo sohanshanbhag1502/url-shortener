@@ -5,10 +5,5 @@ export default defineConfig({
   plugins: [
     react(),
   ],
-  server:{
-    port: 4173,
-    host: true,
-    strictPort: true
-  },
   envPrefix: 'VITE_'
 })
