@@ -1,16 +1,16 @@
 import { useParams } from "react-router-dom"
 import { useEffect } from "react";
 
+const selfUrl = window.location.origin;
+
 interface resp{
     message: string;
 }
 
-const apiUrl = import.meta.env.VITE_API_URI;
-
 export default function RedirectElement() {
     const params = useParams<{ id: string }>();
     const func = async () => {
-        const response = await fetch(apiUrl+'/api/geturl', {
+        const response = await fetch(selfUrl+'/api/geturl', {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -26,6 +26,6 @@ export default function RedirectElement() {
 
     return (
         <>
-        </>
-    )
+        </>
+    )
 }

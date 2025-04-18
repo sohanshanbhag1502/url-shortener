@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Copy, Link, ExternalLink, Loader } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 
-const apiUrl = import.meta.env.VITE_API_URI;
-const selfUrl = import.meta.env.VITE_SELF_URI;
+const selfUrl = window.location.origin;
 
 interface ShortenResponse {
     message: string;
@@ -18,7 +17,7 @@ export default function UrlShortener() {
         if (!url) return;
         setLoading(true);
         try {
-            const response = await fetch(apiUrl+"/api/shorten", {
+            const response = await fetch(selfUrl+"/api/shorten", {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -86,6 +85,6 @@ export default function UrlShortener() {
                     )}
                 </div>
             </div>
-        </div>
-    );
+        </div>
+    );
 }
