@@ -5,5 +5,6 @@ export default defineConfig({
   plugins: [
     react(),
   ],
-  envPrefix: 'VITE_'
+  base:"/",
+  envPrefix: 'VITE_'
 })
