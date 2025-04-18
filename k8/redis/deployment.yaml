@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: url-shortener-kv-store
+  labels:
+    app: url-shortener-kv-store
+spec:
+  containers:
+  - name: url-shortener-kv-store
+    image: redis:latest
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "250m"
+      limits:
+        memory: "256Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 6379
