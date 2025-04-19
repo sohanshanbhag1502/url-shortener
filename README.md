@@ -138,3 +138,5 @@ chmod +x delete.sh
 minikube stop
 minikube delete --all
 ```
+
+The docker containers for this app are publiccally available [here](https://hub.docker.com/r/shanbhagsohan/url-shortener)
