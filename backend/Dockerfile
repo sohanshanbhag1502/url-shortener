@@ -13,8 +13,7 @@ FROM node:slim AS production
 
 WORKDIR /app
 COPY --from=build /app/dist ./dist
-COPY --from=build /app/.env ./
 
-EXPOSE 80
+EXPOSE 5000
 
 CMD ["node", "dist/index.js"]

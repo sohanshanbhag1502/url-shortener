@@ -13,7 +13,7 @@ FROM nginx:alpine AS production
 
 WORKDIR /app
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY --from=build /app/nginx /etc/nginx/conf.d
+COPY --from=build /app/.docker/nginx /etc/nginx/conf.d
 
 EXPOSE 80
 

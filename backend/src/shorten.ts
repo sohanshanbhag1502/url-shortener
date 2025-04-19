@@ -23,11 +23,17 @@ const shortenRouter=Router({ mergeParams: true });
 const shorten = async (req:Request, res:Response) => {
     const body: shortenReqBody =req.body as shortenReqBody;
     if (body){
+        const shortenedURL:string|null = await redisClient.get(body.original);
+        if (shortenedURL){
+            res.status(200).json({"message":shortenedURL});
+            return;
+        }
         var shortURL=getRandomString(5);
         while (await redisClient.get(shortURL)){
             shortURL=getRandomString(5);
         }
         await redisClient.set(shortURL, body.original);
+        await redisClient.set(body.original, shortURL);
         res.status(200).json({"message":shortURL});
         return;
     }

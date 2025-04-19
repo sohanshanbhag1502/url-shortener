@@ -32,10 +32,10 @@ export default function UrlShortener() {
                 setShortUrl(selfUrl+"/"+res.message);
             }
             else {
-                console.error("Error shortening URL", res.message);
+                alert("Error Shortening URL");
             }
-        } catch (error) {
-            console.error("Error shortening URL", error);
+        } catch{
+            alert("Error Shortening URL");
         }
         setLoading(false);
     };
@@ -47,14 +47,14 @@ export default function UrlShortener() {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen w-screen bg-gradient-to-br from-blue-500 via-purple-700 to-pink-600 animate-fade-in">
-            <div className="w-full max-w-lg p-8 shadow-2xl bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 rounded-2xl text-white transform transition-all hover:scale-105 hover:shadow-3xl">
+        <div className="flex justify-center items-center h-screen w-screen bg-gradient-to-br from-blue-500 via-purple-700 to-pink-600">
+            <div className="w-full max-w-lg p-8 shadow-2xl bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 rounded-2xl text-white">
                 <div className="space-y-10">
-                    <h2 className="text-3xl font-bold text-center animate-pulse">URL Shortener</h2>
+                    <h2 className="text-3xl font-bold text-center">URL Shortener</h2>
                     <div className="flex flex-col space-y-4 bg-purple-700 p-4 rounded-lg shadow-md border border-purple-500 hover:border-pink-500 transition-all">
                         <input 
                             type="text" 
-                            placeholder="Enter URL" 
+                            placeholder="Enter long URL here..." 
                             value={url} 
                             onChange={(e) => setUrl(e.target.value)} 
                             className="px-4 py-3 border border-purple-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-black transition-all hover:border-pink-400 text-lg"
@@ -85,6 +85,6 @@ export default function UrlShortener() {
                     )}
                 </div>
             </div>
-        </div>
-    );
+        </div>
+    );
 }
