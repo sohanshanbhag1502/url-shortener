@@ -5,7 +5,8 @@ dotenv.config()
 
 const redisURI=process.env.REDIS_URI;
 if (!redisURI){
-    throw new Error(`Invalid Redis URL`);
+    console.log("Invalid Redis URL");
+    process.exit(1);
 }
 
 export const redisClient = createClient({url:redisURI})
