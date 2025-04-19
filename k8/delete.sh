@@ -9,8 +9,8 @@ kubectl delete -f ./redis/service.yaml -n default
 
 kubectl delete -f ./backend/deployment.yaml -n default
 kubectl delete -f ./backend/service.yaml -n default
+kubectl delete -f ./backend/autoscaling.yaml -n default
 
 kubectl delete -f ./frontend/deployment.yaml -n default
 kubectl delete -f ./frontend/service.yaml -n default
-
-kubectl delete namespace default
+kubectl delete -f ./frontend/autoscaling.yaml -n default
