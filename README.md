@@ -139,4 +139,4 @@ minikube stop
 minikube delete --all
 ```
 
-The docker containers for this app are publiccally available [here](https://hub.docker.com/r/shanbhagsohan/url-shortener)
+The docker containers for this app are publicly available [here](https://hub.docker.com/r/shanbhagsohan/url-shortener)
