@@ -9,4 +9,4 @@ class UserBehavior(HttpUser):
     @task(1)
     def load_backend(self):
         self.client.post("/api/shorten", json={"original": "https://www.google.com"})
-        self.client.post("/api/geturl", json={"shortened": "j3uah"})
+        self.client.post("/api/geturl", json={"shortened": "q3Cql"})
